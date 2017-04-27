@@ -32,15 +32,18 @@ client.on('listening', () => {
 
 //2. Wait for command
 client.on('message', (message, rinfo) => {
-  console.log('Message from: ' + rinfo.address + ':' + rinfo.port + ' - ' + message);
   const command: Command = JSON.parse(message);
-
-  const executedCommand = spawn(command.command, command.args, (err, stdout, stderr) => {
-    console.log("error: ", err);
-    console.log("stdout: ", stdout);
-    console.log("stderr: ", stderr);
-  })
-
+  console.log('command: ', command.command);
+  console.log('args: ', command.args);
+  try {
+    //const executedCommand = spawn(command.command, command.args, (err, stdout, stderr) => {
+    //  console.log("error: ", err);
+    //  console.log("stdout: ", stdout);
+    //  console.log("stderr: ", stderr);
+    //})
+  } catch(err) {
+    console.log(err);
+  }
   console.log(Date.now());
   console.log('Message received from server: ' + message.toString())
 });
