@@ -10,7 +10,7 @@ const client = dgram.createSocket('udp4');
 
 const UDP_PORT = 6024;
 const BROADCAST_ADDRESS = '239.255.255.250';
-const LOCAL_IP = '192.168.1.102';
+const LOCAL_IP = '192.168.1.106';
 const HOST_IP = '192.168.1.102';
 
 /******************
