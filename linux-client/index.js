@@ -39,11 +39,18 @@ client.on('message', (message, rinfo) => {
   console.log('command: ', command.command);
   console.log('args: ', command.args);
   try {
-    const executedCommand = spawn(command.command, command.args, (err, stdout, stderr) => {
-      console.log("error: ", err);
-      console.log("stdout: ", stdout);
-      console.log("stderr: ", stderr);
-    })
+    const executedCommand = spawn(command.command, command.args);
+  
+    executedCommand.stdout.on('data', (data) => {
+      console.log(data);
+    });
+    executedCommand.stderr.on('data', (data) => {
+      console.log(data);
+    });
+    executedCommand.on('exit', () => {
+      console.log('Command Exit');
+    });
+
   } catch(err) {
     console.log(err);
   }
