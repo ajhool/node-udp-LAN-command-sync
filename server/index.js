@@ -30,7 +30,8 @@ function messageToBuffer(message:string ){
 }
 
 function buildCommand(command: Command){
-  return JSON.stringify(command.toString());
+  const literal = {command: command.command, args: command.args};
+  return JSON.stringify(literal);
 }
 
 /******************

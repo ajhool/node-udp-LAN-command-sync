@@ -1,6 +1,7 @@
 /* @flow */
 
 //1. Connect to server
+import dotenv from 'dotenv'
 import dgram from 'dgram';
 import buffer from 'buffer';
 import childProcess from 'child_process';
@@ -8,10 +9,12 @@ import childProcess from 'child_process';
 const spawn = childProcess.spawn;
 const client = dgram.createSocket('udp4');
 
+dotenv.config();
+
 const UDP_PORT = 6024;
 const BROADCAST_ADDRESS = '239.255.255.250';
-const LOCAL_IP = '192.168.1.106';
-const HOST_IP = '192.168.1.102';
+const LOCAL_IP = process.env.LOCAL_IP;
+const HOST_IP = process.env.HOST_IP;
 
 /******************
  * Classes
@@ -32,15 +35,18 @@ client.on('listening', () => {
 
 //2. Wait for command
 client.on('message', (message, rinfo) => {
-  console.log('Message from: ' + rinfo.address + ':' + rinfo.port + ' - ' + message);
   const command: Command = JSON.parse(message);
-
-  const executedCommand = spawn(command.command, command.args, (err, stdout, stderr) => {
-    console.log("error: ", err);
-    console.log("stdout: ", stdout);
-    console.log("stderr: ", stderr);
-  })
-
+  console.log('command: ', command.command);
+  console.log('args: ', command.args);
+  try {
+    const executedCommand = spawn(command.command, command.args, (err, stdout, stderr) => {
+      console.log("error: ", err);
+      console.log("stdout: ", stdout);
+      console.log("stderr: ", stderr);
+    })
+  } catch(err) {
+    console.log(err);
+  }
   console.log(Date.now());
   console.log('Message received from server: ' + message.toString())
 });
