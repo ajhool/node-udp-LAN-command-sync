@@ -48,7 +48,7 @@ JSON Samples:
 
 ## Copyright and License ##
 
-//Copyright &copy; 2017 Aidan Hoolachan using the [MIT License](https://opensource.org/licenses/MIT).
+Copyright &copy; 2017 Aidan Hoolachan using the [MIT License](https://opensource.org/licenses/MIT).
 
 
 ### Note ###
