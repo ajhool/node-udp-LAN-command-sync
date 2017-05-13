@@ -1,4 +1,5 @@
 /* @flow */
+//Copyright © 2017 Aidan Hoolachan using MIT License.
 
 //1. Connect to server
 import dotenv from 'dotenv'

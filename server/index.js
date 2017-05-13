@@ -1,4 +1,5 @@
 /* @flow */
+//Copyright © 2017 Aidan Hoolachan using MIT License.
 
 import dgram from 'dgram';
 import buffer from 'buffer';
